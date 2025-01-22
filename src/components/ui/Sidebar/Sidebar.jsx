@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import useContextState from "../../../hooks/useContextState";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
-import HyperMasterSidebar from "./HyperMasterSidebar";
+import SidebarItems from "./SidebarItems";
 
 const Sidebar = () => {
   const { setShowSidebar, showSidebar } = useContextState();
@@ -114,7 +114,7 @@ const Sidebar = () => {
             <i className="bx bx-x bx-sm align-middle"></i>
           </a>
         </div>
-        <HyperMasterSidebar />
+        <SidebarItems />
 
         <div className="menu-horizontal-wrapper"></div>
         <a className="menu-horizontal-next d-none"></a>

@@ -1,4 +1,4 @@
-import HyperMaster from "./HyperMaster";
+import ListItems from "./ListItems";
 
 const NavListItem = () => {
   return (
@@ -10,7 +10,7 @@ const NavListItem = () => {
       <div className="container-xxl d-flex h-100">
         <a className="menu-horizontal-prev d-none"></a>
         <div className="menu-horizontal-wrapper">
-          <HyperMaster />
+          <ListItems />
         </div>
         <a className="menu-horizontal-next d-none"></a>
       </div>

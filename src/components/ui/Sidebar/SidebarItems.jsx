@@ -2,19 +2,14 @@ import { Link } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { useState } from "react";
 
-const HyperMasterSidebar = () => {
-  const [showBranch, setShowBranch] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [showClients, setShowClients] = useState(false);
-
-  const [showWhiteLabel, setShowWhiteLabel] = useState(false);
-  const {
-    setShowSidebar,
-    setShowAddBranch,
-    setShowSocialLink,
-    setSiteNotification,
-    setAddWhiteLabel,
-  } = useContextState();
+const SidebarItems = () => {
+  const [showOrder, setShowOrder] = useState(false);
+  const [showEvent, setShowEvent] = useState(false);
+  const [showClose, setShowClose] = useState(false);
+  const [showTV, setShowTV] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+  const [showMarket, setShowMarket] = useState(false);
+  const { setShowSidebar } = useContextState();
   return (
     <ul className="menu-inner overflow-auto" style={{ marginLeft: "0px" }}>
       <li className="menu-item">
@@ -27,59 +22,70 @@ const HyperMasterSidebar = () => {
           <div data-i18n="Dashboards">Dashboard</div>
         </Link>
       </li>
-      <li className={`menu-item ${showWhiteLabel ? "open" : ""}`}>
+      <li className={`menu-item ${showMarket ? "open" : ""}`}>
         <a
           onClick={() => {
-            setShowWhiteLabel((prev) => !prev);
-            setShowBranch(false);
-            setShowSettings(false);
+            setShowMarket((prev) => !prev);
+            setShowBanner(false);
+            setShowClose(false);
+            setShowEvent(false);
+            setShowOrder(false);
+            setShowTV(false);
           }}
           className="menu-link menu-toggle"
         >
           <i className="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Branch">Whitelabel</div>
+          <div data-i18n="Branch">Markets</div>
         </a>
 
         <ul className="menu-sub">
           <li className="menu-item">
             <Link
               onClick={() => setShowSidebar(false)}
-              to="/view-whitelabel"
+              to="/cricket"
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">View Whitelabel</div>
+              <div data-i18n="View Branches">Cricket</div>
             </Link>
           </li>
 
           <li className="menu-item">
             <a
               onClick={() => {
-                setAddWhiteLabel(true);
                 setShowSidebar(false);
               }}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="Add Branch">Add Whitelabel</div>
+              <div data-i18n="Add Branch">All</div>
+            </a>
+            <a
+              onClick={() => {
+                setShowSidebar(false);
+              }}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Add Branch">Delete Market</div>
             </a>
           </li>
         </ul>
       </li>{" "}
-      <li className={`menu-item ${showBranch ? "open" : ""}`}>
+      <li className={`menu-item ${showEvent ? "open" : ""}`}>
         <a
           onClick={() => {
-            setShowBranch((prev) => !prev);
-            setShowSettings(false);
-
-            setShowClients(false);
-
-            setShowWhiteLabel(false);
+            setShowMarket(false);
+            setShowBanner(false);
+            setShowClose(false);
+            setShowEvent((prev) => !prev);
+            setShowOrder(false);
+            setShowTV(false);
           }}
           className="menu-link menu-toggle"
         >
           <i className="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Branch">Branch</div>
+          <div data-i18n="Branch">Events</div>
         </a>
 
         <ul className="menu-sub">
@@ -90,37 +96,48 @@ const HyperMasterSidebar = () => {
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">View Branches</div>
+              <div data-i18n="View Branches">Cricket</div>
             </Link>
           </li>
 
           <li className="menu-item">
             <a
               onClick={() => {
-                setShowAddBranch(true);
                 setShowSidebar(false);
               }}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="Add Branch">Add Branch</div>
+              <div data-i18n="Add Branch">Football</div>
+            </a>
+          </li>
+          <li className="menu-item">
+            <a
+              onClick={() => {
+                setShowSidebar(false);
+              }}
+              className="menu-link"
+            >
+              <i className="menu-icon tf-icons bx bxs-institution"></i>
+              <div data-i18n="Add Branch">Tennis</div>
             </a>
           </li>
         </ul>
       </li>
-      <li className={`menu-item ${showClients ? "open" : ""}`}>
+      <li className={`menu-item ${showOrder ? "open" : ""}`}>
         <a
           onClick={() => {
-            setShowClients((prev) => !prev);
-            setShowBranch(false);
-            setShowSettings(false);
-
-            setShowWhiteLabel(false);
+            setShowMarket(false);
+            setShowBanner(false);
+            setShowClose(false);
+            setShowEvent(false);
+            setShowOrder((prev) => !prev);
+            setShowTV(false);
           }}
           className="menu-link menu-toggle"
         >
           <i className="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Branch">Clients</div>
+          <div data-i18n="Branch">Orders</div>
         </a>
 
         <ul className="menu-sub">
@@ -131,7 +148,7 @@ const HyperMasterSidebar = () => {
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">View Clients</div>
+              <div data-i18n="View Branches">Cricket</div>
             </Link>
           </li>
           <li className="menu-item">
@@ -141,56 +158,26 @@ const HyperMasterSidebar = () => {
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">Clients with balance</div>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link
-              onClick={() => setShowSidebar(false)}
-              to="/all-client"
-              className="menu-link"
-            >
-              <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">All Client</div>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link
-              onClick={() => setShowSidebar(false)}
-              to="/active-client"
-              className="menu-link"
-            >
-              <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">Active Client</div>
-            </Link>
-          </li>
-          <li className="menu-item">
-            <Link
-              onClick={() => setShowSidebar(false)}
-              to="/inactive-client"
-              className="menu-link"
-            >
-              <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Branches">Inactive Client</div>
+              <div data-i18n="View Branches">All</div>
             </Link>
           </li>
         </ul>
       </li>
-      <li className={`menu-item ${showSettings ? "open" : ""}`}>
+      <li className={`menu-item ${showClose ? "open" : ""}`}>
         <a
           style={{}}
           onClick={() => {
-            setShowSettings((prev) => !prev);
-            setShowBranch(false);
-
-            setShowClients(false);
-
-            setShowWhiteLabel(false);
+            setShowMarket(false);
+            setShowBanner(false);
+            setShowClose(false);
+            setShowEvent(false);
+            setShowOrder((prev) => !prev);
+            setShowTV(false);
           }}
           className="menu-link menu-toggle"
         >
           <i className="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Settings">Settings</div>
+          <div data-i18n="Settings">Closed</div>
         </a>
 
         <ul className="menu-sub">
@@ -201,7 +188,7 @@ const HyperMasterSidebar = () => {
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="View Banners">View Banners</div>
+              <div data-i18n="View Banners">Cricket</div>
             </Link>
           </li>
 
@@ -212,33 +199,68 @@ const HyperMasterSidebar = () => {
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="Add Banner">Add Banner</div>
+              <div data-i18n="Add Banner">All</div>
             </Link>
           </li>
+        </ul>
+      </li>
+      <li className={`menu-item ${showTV ? "open" : ""}`}>
+        <a
+          style={{}}
+          onClick={() => {
+            setShowMarket(false);
+            setShowBanner(false);
+            setShowClose(false);
+            setShowEvent(false);
+            setShowOrder(false);
+            setShowTV((prev) => !prev);
+          }}
+          className="menu-link menu-toggle"
+        >
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Settings">TV</div>
+        </a>
 
+        <ul className="menu-sub">
           <li className="menu-item">
-            <a
-              onClick={() => {
-                setShowSocialLink(true);
-                setShowSidebar(false);
-              }}
+            <Link
+              to="/view-banner"
+              onClick={() => setShowSidebar(false)}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="Social Links">Social Links</div>
-            </a>
+              <div data-i18n="View Banners">TV</div>
+            </Link>
           </li>
+        </ul>
+      </li>
+      <li className={`menu-item ${showBanner ? "open" : ""}`}>
+        <a
+          style={{}}
+          onClick={() => {
+            setShowMarket(false);
+            setShowBanner((prev) => !prev);
+            setShowClose(false);
+            setShowEvent(false);
+            setShowOrder(false);
+            setShowTV(false);
+          }}
+          className="menu-link menu-toggle"
+        >
+          <i className="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Settings">Banner</div>
+        </a>
+
+        <ul className="menu-sub">
           <li className="menu-item">
-            <a
-              onClick={() => {
-                setSiteNotification(true);
-                setShowSidebar(false);
-              }}
+            <Link
+              to="/view-banner"
+              onClick={() => setShowSidebar(false)}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
-              <div data-i18n="Social Links">Site Notification</div>
-            </a>
+              <div data-i18n="View Banners">Banner</div>
+            </Link>
           </li>
         </ul>
       </li>
@@ -246,4 +268,4 @@ const HyperMasterSidebar = () => {
   );
 };
 
-export default HyperMasterSidebar;
+export default SidebarItems;
