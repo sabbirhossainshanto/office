@@ -1,0 +1,29 @@
+{
+  "status": {
+    "statusCode": "0",
+    "statusDesc": "Success"
+  },
+  "result": {
+    "settings": {
+      "siteTitle": "b2c",
+      "siteUrl": "a23money.com",
+      "interval": 600,
+      "casino": "aura",
+      "registration": true,
+      "forceLogin": true,
+      "demoLogin": true,
+      "deposit": true,
+      "bonus": true,
+      "withdraw": true,
+      "disabledDevtool": false,
+      "casinoCurrency": "AED",
+      "otp": false,
+      "baseUrl": ""
+    },
+    "endpoint": {
+      "login": "https://admin.api7.live/api/office/login",
+      "auth": "https://admin.api7.live/api/office/auth"
+    }
+  },
+  "success": true
+}
