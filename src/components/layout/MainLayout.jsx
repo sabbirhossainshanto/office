@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useVerifyUser } from "../../hooks/auth";
 import useContextState from "../../hooks/useContextState";
+import { useSelector } from "react-redux";
 
 const MainLayout = () => {
   const { showSidebar } = useContextState();
@@ -19,9 +20,7 @@ const MainLayout = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
-
-  /* TODO */
-  const token = localStorage.getItem("adminToken");
+  const { token } = useSelector((state) => state.auth);
   const disabledDevtool = Settings.disabledDevtool;
   /*if Token expire logout user */
   useEffect(() => {
@@ -95,9 +94,7 @@ const MainLayout = () => {
         <div className="layout-page">
           <div className="content-wrapper">
             {showSidebar ? <Sidebar /> : <NavListItem />}
-
             <Outlet />
-
             <Footer />
           </div>
 

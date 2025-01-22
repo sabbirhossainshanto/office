@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   readOnly: null,
-  adminToken: null,
+  token: null,
   adminName: null,
   adminRole: null,
   adminSite: null,
@@ -14,14 +14,14 @@ export const authSlice = createSlice({
   reducers: {
     setUser: (state, { payload }) => {
       state.readOnly = payload.readOnly;
-      state.adminToken = payload.adminToken;
+      state.token = payload.adminToken;
       state.adminName = payload.adminName;
       state.adminRole = payload.adminRole;
       state.adminSite = payload.adminSite;
     },
     logout: (state) => {
       state.readOnly = null;
-      state.adminToken = null;
+      state.token = null;
       state.adminName = null;
       state.adminRole = null;
       state.adminSite = null;

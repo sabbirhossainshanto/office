@@ -22,7 +22,8 @@
     },
     "endpoint": {
       "login": "https://admin.api7.live/api/office/login",
-      "auth": "https://admin.api7.live/api/office/auth"
+      "auth": "https://admin.api7.live/api/office/auth",
+      "changePassword": "https://admin.api7.live/api/office/changePassword"
     }
   },
   "success": true
