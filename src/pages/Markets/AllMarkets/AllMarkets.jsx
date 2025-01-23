@@ -1,29 +1,53 @@
-import { Pagination } from "rsuite";
+// import { Pagination } from "rsuite";
 import { useGetOpenMarket } from "../../../hooks/market";
 import { useState } from "react";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
+import FancyResult from "../../../components/modal/Markets/FancyResult";
+import MatchResult from "../../../components/modal/Markets/MatchResult";
 
 const AllMarkets = () => {
-  const [activePage, setActivePage] = useState(1);
+  // const [activePage, setActivePage] = useState(1);
   const payload = {
     pagination: true,
-    page: activePage,
+    // page: activePage,
     eventTypeId: 0,
   };
   const { data } = useGetOpenMarket(payload);
+  const [showFancyResult, setShowFancyResult] = useState(false);
+  const [showMatchResult, setShowMatchResult] = useState(false);
+  const [showOrder, setShowOrder] = useState(false);
+
+  const handleOpenDummyModal = (item) => {
+    if (item?.isFancy == 1) {
+      setShowFancyResult(true);
+    } else {
+      setShowMatchResult(true);
+    }
+  };
 
   return (
-    <div className="container-xxl flex-grow-1 container-p-y">
-      <div className="card">
-        <div
-          className="card-header"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <h5>All</h5>
-          {/* <Pagination
+    <>
+      {showFancyResult && (
+        <FancyResult setShowFancyResult={setShowFancyResult} />
+      )}
+      {showMatchResult && (
+        <MatchResult setShowMatchResult={setShowMatchResult} />
+      )}
+
+      {showOrder && <FancyResult setShowFancyResult={setShowOrder} />}
+      <div className="container-xxl flex-grow-1 container-p-y">
+        <div className="card">
+          <div
+            className="card-header"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <h5>Cricket</h5>
+            {/* <Pagination
             prev
             next
             size="md"
@@ -35,62 +59,91 @@ const AllMarkets = () => {
             ellipsis
             boundaryLinks
           /> */}
-        </div>
+          </div>
 
-        <div className="table-responsive text-nowrap">
-          <table className="table table-hover table-sm">
-            <thead className="table-dark">
-              <tr>
-                <th>EventName</th>
-                <th>MarketId</th>
-                <th>Market Name</th>
-                <th>Score</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody className="table-border-bottom-0">
-              {data?.result?.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td>{item?.eventName}</td>
-                    <td>{item?.marketId}</td>
-                    <td>{item?.marketName}</td>
-                    <td>{item?.score} </td>
-                    <td>
-                      {" "}
-                      <a
-                        style={{
-                          color: "white",
-                        }}
-                        className="btn btn-icon btn-sm btn-success"
-                      >
-                        D
-                      </a>
-                      &nbsp;{" "}
-                      <a
-                        style={{
-                          color: "white",
-                        }}
-                        className="btn btn-icon btn-sm btn-dark"
-                      >
-                        S
-                      </a>{" "}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          {"meta" && (
-            <div
-              style={{
-                marginTop: "20px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "end",
-              }}
-            >
-              {/* <Pagination
+          <div className="table-responsive text-nowrap">
+            <table className="table table-hover table-sm">
+              <thead className="table-dark">
+                <tr>
+                  <th>MarketId</th>
+                  <th>EventName</th>
+                  <th>Market Name</th>
+                  <th>Score</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody className="table-border-bottom-0">
+                {data?.result?.map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>
+                        {item?.marketId}{" "}
+                        <MdOutlineContentCopy
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleCopyToClipBoard(item?.marketId)}
+                        />
+                      </td>
+                      <td>{item?.eventName}</td>
+                      <td>{item?.marketName}</td>
+                      <td>{item?.score} </td>
+                      <td style={{ display: "flex", gap: "4px" }}>
+                        {item?.isFancy == 1 ? (
+                          <a
+                            onClick={() => setShowFancyResult(true)}
+                            style={{
+                              color: "white",
+                            }}
+                            className="btn btn-icon btn-sm btn-success"
+                          >
+                            FR
+                          </a>
+                        ) : (
+                          <a
+                            onClick={() => setShowMatchResult(true)}
+                            style={{
+                              color: "white",
+                            }}
+                            className="btn btn-icon btn-sm btn-success"
+                          >
+                            MR
+                          </a>
+                        )}
+
+                        <a
+                          onClick={() => handleOpenDummyModal(item)}
+                          style={{
+                            color: "white",
+                          }}
+                          className="btn btn-icon btn-sm btn-dark"
+                        >
+                          DR
+                        </a>
+
+                        <a
+                          onClick={() => setShowOrder(true)}
+                          style={{
+                            color: "white",
+                          }}
+                          className="btn btn-icon btn-sm btn-warning"
+                        >
+                          O
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            {"meta" && (
+              <div
+                style={{
+                  marginTop: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "end",
+                }}
+              >
+                {/* <Pagination
                 prev
                 next
                 size="md"
@@ -102,11 +155,12 @@ const AllMarkets = () => {
                 ellipsis
                 boundaryLinks
               /> */}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
