@@ -6,10 +6,16 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import handleRandomToken from "../../../utils/handleRandomToken";
 import { API } from "../../../api";
 
-const MatchResult = ({ setShowMatchResult, refetchMatchResult }) => {
+const MatchResult = ({
+  setShowMatchResult,
+  refetchMatchResult,
+  setSingleCricket,
+  singleCricket,
+}) => {
   const matchResultRef = useRef();
   useCloseModalClickOutside(matchResultRef, () => {
     setShowMatchResult(false);
+    setSingleCricket({});
   });
   const { register, handleSubmit, reset } = useForm();
 
@@ -72,7 +78,7 @@ const MatchResult = ({ setShowMatchResult, refetchMatchResult }) => {
                     </label>
                     <div className="col-sm-9" data-select2-id="26">
                       <div className="position-relative" data-select2-id="25">
-                        Event Name
+                        {singleCricket?.eventName}
                       </div>
                     </div>
                   </div>
@@ -85,7 +91,7 @@ const MatchResult = ({ setShowMatchResult, refetchMatchResult }) => {
                     </label>
                     <div className="col-sm-9" data-select2-id="26">
                       <div className="position-relative" data-select2-id="25">
-                        Event Name
+                        {singleCricket?.marketName}
                       </div>
                     </div>
                   </div>

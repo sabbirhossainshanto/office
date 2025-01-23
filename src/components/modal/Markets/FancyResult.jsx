@@ -6,10 +6,16 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import handleRandomToken from "../../../utils/handleRandomToken";
 import { API } from "../../../api";
 
-const FancyResult = ({ setShowFancyResult, refetchFancyResult }) => {
+const FancyResult = ({
+  setShowFancyResult,
+  refetchFancyResult,
+  setSingleCricket,
+  singleCricket,
+}) => {
   const updateFancyResultRef = useRef();
   useCloseModalClickOutside(updateFancyResultRef, () => {
     setShowFancyResult(false);
+    setSingleCricket({});
   });
   const { register, handleSubmit, reset } = useForm();
 
@@ -72,7 +78,7 @@ const FancyResult = ({ setShowFancyResult, refetchFancyResult }) => {
                     </label>
                     <div className="col-sm-9" data-select2-id="26">
                       <div className="position-relative" data-select2-id="25">
-                        Event Name
+                        {singleCricket?.eventName}
                       </div>
                     </div>
                   </div>
@@ -85,30 +91,10 @@ const FancyResult = ({ setShowFancyResult, refetchFancyResult }) => {
                     </label>
                     <div className="col-sm-9" data-select2-id="26">
                       <div className="position-relative" data-select2-id="25">
-                        Event Name
+                        {singleCricket?.marketName}
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className="row mb-3" id="bank_account_name_div">
-                    <label
-                      className="col-sm-2 col-form-label"
-                      htmlFor="basic-default-name"
-                    >
-                      Score
-                    </label>
-                    <div className="col-sm-10">
-                      <select
-                        {...register("score", {
-                          required: true,
-                        })}
-                        className="select2 form-select select2-hidden-accessible"
-                      >
-                        <option value="PENDING">PENDING</option>
-                        <option value="APPROVED">APPROVED</option>
-                      </select>
-                    </div>
-                  </div> */}
 
                   <div className="row mb-3" id="bank_account_name_div">
                     <label

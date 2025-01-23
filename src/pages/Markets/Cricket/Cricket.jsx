@@ -17,11 +17,14 @@ const Cricket = () => {
   const [showFancyResult, setShowFancyResult] = useState(false);
   const [showMatchResult, setShowMatchResult] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
+  const [singleCricket, setSingleCricket] = useState({});
 
   const handleOpenDummyModal = (item) => {
     if (item?.isFancy == 1) {
+      setSingleCricket(item);
       setShowFancyResult(true);
     } else {
+      setSingleCricket(item);
       setShowMatchResult(true);
     }
   };
@@ -29,13 +32,27 @@ const Cricket = () => {
   return (
     <>
       {showFancyResult && (
-        <FancyResult setShowFancyResult={setShowFancyResult} />
+        <FancyResult
+          setShowFancyResult={setShowFancyResult}
+          setSingleCricket={setSingleCricket}
+          singleCricket={singleCricket}
+        />
       )}
       {showMatchResult && (
-        <MatchResult setShowMatchResult={setShowMatchResult} />
+        <MatchResult
+          setShowMatchResult={setShowMatchResult}
+          setSingleCricket={setSingleCricket}
+          singleCricket={singleCricket}
+        />
       )}
 
-      {showOrder && <FancyResult setShowFancyResult={setShowOrder} />}
+      {showOrder && (
+        <FancyResult
+          setShowFancyResult={setShowOrder}
+          setSingleCricket={setSingleCricket}
+          singleCricket={singleCricket}
+        />
+      )}
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
           <div
@@ -89,7 +106,10 @@ const Cricket = () => {
                       <td style={{ display: "flex", gap: "4px" }}>
                         {item?.isFancy == 1 ? (
                           <a
-                            onClick={() => setShowFancyResult(true)}
+                            onClick={() => {
+                              setShowFancyResult(true);
+                              setSingleCricket(item);
+                            }}
                             style={{
                               color: "white",
                             }}
@@ -99,11 +119,14 @@ const Cricket = () => {
                           </a>
                         ) : (
                           <a
-                            onClick={() => setShowMatchResult(true)}
+                            onClick={() => {
+                              setShowMatchResult(true);
+                              setSingleCricket(item);
+                            }}
                             style={{
                               color: "white",
                             }}
-                            className="btn btn-icon btn-sm btn-success"
+                            className="btn btn-icon btn-sm btn-danger"
                           >
                             MR
                           </a>
@@ -120,7 +143,10 @@ const Cricket = () => {
                         </a>
 
                         <a
-                          onClick={() => setShowOrder(true)}
+                          onClick={() => {
+                            setShowOrder(true);
+                            setSingleCricket(item);
+                          }}
                           style={{
                             color: "white",
                           }}
