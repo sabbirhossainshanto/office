@@ -1,46 +1,63 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import handleRandomToken from "../../../utils/handleRandomToken";
-import { API } from "../../../api";
+import { useGetSingleRunner } from "../../../hooks/runner";
+import { useAddResult } from "../../../hooks/result";
 
 const MatchResult = ({
   setShowMatchResult,
   refetchMatchResult,
   setSingleCricket,
   singleCricket,
+  showDummy,
+  setShowDummy,
 }) => {
+  const { mutate: addResult } = useAddResult();
+  const { data: runners } = useGetSingleRunner({
+    marketId: singleCricket?.marketId,
+  });
+
   const matchResultRef = useRef();
   useCloseModalClickOutside(matchResultRef, () => {
     setShowMatchResult(false);
     setSingleCricket({});
+    setShowDummy(false);
   });
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = async ({ remark, status }) => {
+  const onSubmit = async ({ runner }) => {
+    const [id, name] = runner.split("//");
     const generatedToken = handleRandomToken();
-    const payload = {
-      status,
-      remark,
-
-      type: "editWithdraw",
+    let payload = {
+      marketId: singleCricket?.marketId,
+      fancy: 0,
+      id,
+      name,
       token: generatedToken,
     };
-    const res = await axios.post(API.withdraw, payload, {
-      headers: { Authorization: `Bearer ${""}` },
-    });
-    const data = res.data;
-    if (data?.success) {
-      refetchMatchResult();
-      toast.success(data?.result?.message);
-      reset();
-      setShowMatchResult(false);
-    } else {
-      toast.error(data?.error?.status?.[0]?.description);
+    if (showDummy) {
+      payload.showDummy = showDummy;
     }
+
+    addResult(payload, {
+      onSuccess: (data) => {
+        if (data?.success) {
+          refetchMatchResult();
+          toast.success(data?.result?.message);
+          setShowMatchResult(false);
+          setShowDummy(false);
+        } else {
+          toast.error(data?.error?.status?.[0]?.description);
+        }
+      },
+    });
   };
+
+  if (!runners) {
+    return null;
+  }
 
   return (
     <>
@@ -101,17 +118,25 @@ const MatchResult = ({
                       className="col-sm-2 col-form-label"
                       htmlFor="basic-default-name"
                     >
-                      Score
+                      Team Name
                     </label>
                     <div className="col-sm-10">
                       <select
-                        {...register("score", {
+                        {...register("runner", {
                           required: true,
                         })}
                         className="select2 form-select select2-hidden-accessible"
                       >
-                        <option value="PENDING">PENDING</option>
-                        <option value="APPROVED">APPROVED</option>
+                        {runners?.result?.map((runner) => {
+                          return (
+                            <option
+                              key={`${runner?.id}//${runner?.name}`}
+                              value={`${runner?.id}//${runner?.name}`}
+                            >
+                              {runner?.name}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                   </div>
@@ -119,7 +144,10 @@ const MatchResult = ({
               </div>
               <div className="modal-footer">
                 <button
-                  onClick={() => setShowMatchResult(false)}
+                  onClick={() => {
+                    setShowMatchResult(false);
+                    setShowDummy(false);
+                  }}
                   type="button"
                   className="btn btn-label-secondary"
                   data-bs-dismiss="modal"

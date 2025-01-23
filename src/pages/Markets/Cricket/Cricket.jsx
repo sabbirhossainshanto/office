@@ -5,6 +5,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import FancyResult from "../../../components/modal/Markets/FancyResult";
 import MatchResult from "../../../components/modal/Markets/MatchResult";
+import { Link } from "react-router-dom";
 
 const Cricket = () => {
   // const [activePage, setActivePage] = useState(1);
@@ -13,19 +14,21 @@ const Cricket = () => {
     // page: activePage,
     eventTypeId: 4,
   };
-  const { data } = useGetOpenMarket(payload);
+  const { data, refetch } = useGetOpenMarket(payload);
+  const [showDummy, setShowDummy] = useState(false);
   const [showFancyResult, setShowFancyResult] = useState(false);
   const [showMatchResult, setShowMatchResult] = useState(false);
-  const [showOrder, setShowOrder] = useState(false);
   const [singleCricket, setSingleCricket] = useState({});
 
   const handleOpenDummyModal = (item) => {
     if (item?.isFancy == 1) {
+      setShowDummy(true);
       setSingleCricket(item);
       setShowFancyResult(true);
     } else {
       setSingleCricket(item);
       setShowMatchResult(true);
+      setShowDummy(true);
     }
   };
 
@@ -33,26 +36,25 @@ const Cricket = () => {
     <>
       {showFancyResult && (
         <FancyResult
+          showDummy={showDummy}
           setShowFancyResult={setShowFancyResult}
           setSingleCricket={setSingleCricket}
           singleCricket={singleCricket}
+          refetchFancyResult={refetch}
+          setShowDummy={setShowDummy}
         />
       )}
       {showMatchResult && (
         <MatchResult
+          showDummy={showDummy}
           setShowMatchResult={setShowMatchResult}
           setSingleCricket={setSingleCricket}
           singleCricket={singleCricket}
+          refetchMatchResult={refetch}
+          setShowDummy={setShowDummy}
         />
       )}
 
-      {showOrder && (
-        <FancyResult
-          setShowFancyResult={setShowOrder}
-          setSingleCricket={setSingleCricket}
-          singleCricket={singleCricket}
-        />
-      )}
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
           <div
@@ -142,18 +144,15 @@ const Cricket = () => {
                           DR
                         </a>
 
-                        <a
-                          onClick={() => {
-                            setShowOrder(true);
-                            setSingleCricket(item);
-                          }}
+                        <Link
+                          to={`/market-orders?marketId=${item?.marketId}`}
                           style={{
                             color: "white",
                           }}
                           className="btn btn-icon btn-sm btn-warning"
                         >
                           O
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   );

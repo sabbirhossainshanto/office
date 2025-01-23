@@ -2,14 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { API } from "../api";
 import { AxiosSecure } from "../lib/AxiosSecure";
 
-export const useGetOpenMarket = (payload) => {
+export const useGetTV = () => {
   return useQuery({
-    queryKey: ["openMarket", payload],
+    queryKey: ["tv"],
     queryFn: async () => {
-      const { data } = await AxiosSecure.post(API.openMarket, payload);
+      const { data } = await AxiosSecure.get(API.tv);
       return data;
     },
     gcTime: 0,
-    refetchInterval: 60 * 1000,
   });
 };

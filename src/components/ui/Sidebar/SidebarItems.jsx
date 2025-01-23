@@ -223,7 +223,7 @@ const SidebarItems = () => {
         <ul className="menu-sub">
           <li className="menu-item">
             <Link
-              to="/view-banner"
+              to="/tv"
               onClick={() => setShowSidebar(false)}
               className="menu-link"
             >

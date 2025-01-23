@@ -7,6 +7,8 @@ import ChangePasswordSuccess from "../pages/ChangePasswordSuccess/ChangePassword
 import ChangePasswordAfterLogin from "../pages/ChangePassword/ChangePasswordAfterLogin";
 import Cricket from "../pages/Markets/Cricket/Cricket";
 import AllMarkets from "../pages/Markets/AllMarkets/AllMarkets";
+import MarketOrders from "../pages/Markets/MarketOrders/MarketOrders";
+import TV from "../pages/TV/TV";
 
 export const router = createBrowserRouter(
   [
@@ -29,6 +31,14 @@ export const router = createBrowserRouter(
         {
           path: "/all-markets",
           element: <AllMarkets />,
+        },
+        {
+          path: "/market-orders",
+          element: <MarketOrders />,
+        },
+        {
+          path: "/tv",
+          element: <TV />,
         },
       ],
     },

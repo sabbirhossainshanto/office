@@ -3,6 +3,10 @@ export const API = {
   changePassword: "",
   login: "",
   auth: "",
+  openOrders: "",
+  runners: "",
+  tv: "",
+  result: "",
 };
 
 export const Settings = {

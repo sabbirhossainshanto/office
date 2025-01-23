@@ -8,17 +8,20 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
     .get(url)
     .then((res) => {
       const data = res.data;
+
       if (data?.result) {
-        /* API */
-        API.auth = data?.result?.endpoint?.auth;
-        API.login = data?.result?.endpoint?.login;
-        API.changePassword = data?.result?.endpoint?.changePassword;
-        API.openMarket = data?.result?.endpoint?.openMarket;
-        /* Settings */
-        Settings.disabledDevtool = data?.result?.settings?.disabledDevtool;
-        Settings.siteUrl = data?.result?.settings?.siteUrl;
-        Settings.siteTitle = data?.result?.settings?.siteTitle;
-        Settings.interval = data?.result?.settings?.interval;
+        // Destructure API endpoints and Settings
+        const { endpoint = {}, settings = {} } = data.result;
+
+        // Dynamically update API object
+        Object.keys(endpoint).forEach((key) => {
+          API[key] = endpoint[key];
+        });
+
+        // Dynamically update Settings object
+        Object.keys(settings).forEach((key) => {
+          Settings[key] = settings[key];
+        });
 
         setNoticeLoaded(true);
       }

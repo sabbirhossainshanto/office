@@ -1,45 +1,52 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import handleRandomToken from "../../../utils/handleRandomToken";
-import { API } from "../../../api";
+import { useAddResult } from "../../../hooks/result";
 
 const FancyResult = ({
   setShowFancyResult,
   refetchFancyResult,
   setSingleCricket,
   singleCricket,
+  showDummy,
+  setShowDummy,
 }) => {
+  const { mutate: addResult } = useAddResult();
   const updateFancyResultRef = useRef();
   useCloseModalClickOutside(updateFancyResultRef, () => {
     setShowFancyResult(false);
     setSingleCricket({});
+    setShowDummy(false);
   });
   const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = async ({ remark, status }) => {
+  const onSubmit = async ({ score }) => {
     const generatedToken = handleRandomToken();
-    const payload = {
-      status,
-      remark,
-
-      type: "editWithdraw",
+    let payload = {
+      marketId: singleCricket?.marketId,
+      fancy: 1,
+      id: score,
       token: generatedToken,
     };
-    const res = await axios.post(API.withdraw, payload, {
-      headers: { Authorization: `Bearer ${""}` },
-    });
-    const data = res.data;
-    if (data?.success) {
-      refetchFancyResult();
-      toast.success(data?.result?.message);
-      reset();
-      setShowFancyResult(false);
-    } else {
-      toast.error(data?.error?.status?.[0]?.description);
+    if (showDummy) {
+      payload.showDummy = showDummy;
     }
+
+    addResult(payload, {
+      onSuccess: (data) => {
+        if (data?.success) {
+          refetchFancyResult();
+          toast.success(data?.result?.message);
+          reset();
+          setShowFancyResult(false);
+          setShowDummy(false);
+        } else {
+          toast.error(data?.error?.status?.[0]?.description);
+        }
+      },
+    });
   };
 
   return (
@@ -118,7 +125,10 @@ const FancyResult = ({
               </div>
               <div className="modal-footer">
                 <button
-                  onClick={() => setShowFancyResult(false)}
+                  onClick={() => {
+                    setShowFancyResult(false);
+                    setShowDummy(false);
+                  }}
                   type="button"
                   className="btn btn-label-secondary"
                   data-bs-dismiss="modal"

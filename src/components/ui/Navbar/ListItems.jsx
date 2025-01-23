@@ -274,10 +274,7 @@ const ListItems = () => {
 
         <ul className="menu-sub">
           <li className="menu-item">
-            <a
-              onClick={() => handleNavigate("market-analysis")}
-              className="menu-link"
-            >
+            <a onClick={() => handleNavigate("tv")} className="menu-link">
               <i className="menu-icon tf-icons bx bxs-institution"></i>
               <div data-i18n="View Banners">TV</div>
             </a>

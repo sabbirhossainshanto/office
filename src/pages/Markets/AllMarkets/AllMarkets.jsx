@@ -5,6 +5,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import FancyResult from "../../../components/modal/Markets/FancyResult";
 import MatchResult from "../../../components/modal/Markets/MatchResult";
+import { Link } from "react-router-dom";
 
 const AllMarkets = () => {
   // const [activePage, setActivePage] = useState(1);
@@ -13,29 +14,47 @@ const AllMarkets = () => {
     // page: activePage,
     eventTypeId: 0,
   };
-  const { data } = useGetOpenMarket(payload);
+  const { data, refetch } = useGetOpenMarket(payload);
+  const [showDummy, setShowDummy] = useState(false);
   const [showFancyResult, setShowFancyResult] = useState(false);
   const [showMatchResult, setShowMatchResult] = useState(false);
-  const [showOrder, setShowOrder] = useState(false);
+  const [singleCricket, setSingleCricket] = useState({});
 
   const handleOpenDummyModal = (item) => {
     if (item?.isFancy == 1) {
+      setShowDummy(true);
+      setSingleCricket(item);
       setShowFancyResult(true);
     } else {
+      setSingleCricket(item);
       setShowMatchResult(true);
+      setShowDummy(true);
     }
   };
 
   return (
     <>
       {showFancyResult && (
-        <FancyResult setShowFancyResult={setShowFancyResult} />
+        <FancyResult
+          showDummy={showDummy}
+          setShowFancyResult={setShowFancyResult}
+          setSingleCricket={setSingleCricket}
+          singleCricket={singleCricket}
+          refetchFancyResult={refetch}
+          setShowDummy={setShowDummy}
+        />
       )}
       {showMatchResult && (
-        <MatchResult setShowMatchResult={setShowMatchResult} />
+        <MatchResult
+          showDummy={showDummy}
+          setShowMatchResult={setShowMatchResult}
+          setSingleCricket={setSingleCricket}
+          singleCricket={singleCricket}
+          refetchMatchResult={refetch}
+          setShowDummy={setShowDummy}
+        />
       )}
 
-      {showOrder && <FancyResult setShowFancyResult={setShowOrder} />}
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="card">
           <div
@@ -89,7 +108,10 @@ const AllMarkets = () => {
                       <td style={{ display: "flex", gap: "4px" }}>
                         {item?.isFancy == 1 ? (
                           <a
-                            onClick={() => setShowFancyResult(true)}
+                            onClick={() => {
+                              setShowFancyResult(true);
+                              setSingleCricket(item);
+                            }}
                             style={{
                               color: "white",
                             }}
@@ -99,11 +121,14 @@ const AllMarkets = () => {
                           </a>
                         ) : (
                           <a
-                            onClick={() => setShowMatchResult(true)}
+                            onClick={() => {
+                              setShowMatchResult(true);
+                              setSingleCricket(item);
+                            }}
                             style={{
                               color: "white",
                             }}
-                            className="btn btn-icon btn-sm btn-success"
+                            className="btn btn-icon btn-sm btn-danger"
                           >
                             MR
                           </a>
@@ -119,15 +144,15 @@ const AllMarkets = () => {
                           DR
                         </a>
 
-                        <a
-                          onClick={() => setShowOrder(true)}
+                        <Link
+                          to={`/market-orders?marketId=${item?.marketId}`}
                           style={{
                             color: "white",
                           }}
                           className="btn btn-icon btn-sm btn-warning"
                         >
                           O
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   );

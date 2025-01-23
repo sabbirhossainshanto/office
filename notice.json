@@ -24,7 +24,11 @@
       "login": "https://admin.api7.live/api/office/login",
       "auth": "https://admin.api7.live/api/office/auth",
       "changePassword": "https://admin.api7.live/api/office/changePassword",
-      "openMarket": "https://admin.api7.live/api/office/openMarket"
+      "openMarket": "https://admin.api7.live/api/office/openMarket",
+      "openOrders": "https://admin.api7.live/api/office/openOrders",
+      "runners": "https://admin.api7.live/api/office/runners",
+      "tv": "https://admin.api7.live/api/office/tv",
+      "result": "https://admin.api7.live/api/office/result"
     }
   },
   "success": true
