@@ -36,10 +36,8 @@ const MatchResult = ({
       id,
       name,
       token: generatedToken,
+      showDummy,
     };
-    if (showDummy) {
-      payload.showDummy = showDummy;
-    }
 
     addResult(payload, {
       onSuccess: (data) => {

@@ -29,10 +29,8 @@ const FancyResult = ({
       fancy: 1,
       id: score,
       token: generatedToken,
+      showDummy,
     };
-    if (showDummy) {
-      payload.showDummy = showDummy;
-    }
 
     addResult(payload, {
       onSuccess: (data) => {
