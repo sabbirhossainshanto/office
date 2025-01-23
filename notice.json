@@ -23,7 +23,8 @@
     "endpoint": {
       "login": "https://admin.api7.live/api/office/login",
       "auth": "https://admin.api7.live/api/office/auth",
-      "changePassword": "https://admin.api7.live/api/office/changePassword"
+      "changePassword": "https://admin.api7.live/api/office/changePassword",
+      "openMarket": "https://admin.api7.live/api/office/openMarket"
     }
   },
   "success": true

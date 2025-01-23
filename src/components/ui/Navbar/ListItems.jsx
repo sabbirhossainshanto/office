@@ -76,10 +76,7 @@ const ListItems = () => {
 
         <ul className="menu-sub">
           <li className="menu-item ">
-            <a
-              onClick={() => handleNavigate("view-whitelabel")}
-              className="menu-link"
-            >
+            <a onClick={() => handleNavigate("cricket")} className="menu-link">
               <i className="menu-icon tf-icons bx bxs-institution"></i>
               <div data-i18n="View Branches">Cricket</div>
             </a>
@@ -87,9 +84,7 @@ const ListItems = () => {
 
           <li className="menu-item">
             <a
-              onClick={() => {
-                setShowEvent(false);
-              }}
+              onClick={() => handleNavigate("all-markets")}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>

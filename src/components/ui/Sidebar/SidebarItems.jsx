@@ -51,15 +51,14 @@ const SidebarItems = () => {
           </li>
 
           <li className="menu-item">
-            <a
-              onClick={() => {
-                setShowSidebar(false);
-              }}
+            <Link
+              onClick={() => setShowSidebar(false)}
+              to="/all-markets"
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
               <div data-i18n="Add Branch">All</div>
-            </a>
+            </Link>
             <a
               onClick={() => {
                 setShowSidebar(false);

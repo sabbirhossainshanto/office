@@ -1,16 +1,6 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { AxiosSecure } from "../lib/AxiosSecure";
 import { API } from "../api";
-
-export const useLoginUser = () => {
-  return useMutation({
-    mutationKey: ["login"],
-    mutationFn: async (payload) => {
-      const { data } = await AxiosSecure.post(API.login, payload);
-      return data;
-    },
-  });
-};
 
 export const useVerifyUser = () => {
   const token = localStorage.getItem("adminToken");

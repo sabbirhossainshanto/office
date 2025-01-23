@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./redux/store.js";
 const queryClient = new QueryClient();
+import "rsuite/Pagination/styles/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

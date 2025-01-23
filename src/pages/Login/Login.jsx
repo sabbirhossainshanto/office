@@ -21,9 +21,9 @@ const Login = () => {
       username: username,
       password: password,
     };
-    console.log(loginData);
+
     const data = await loginUser(loginData).unwrap();
-    console.log(data);
+
     if (data?.success) {
       if (data?.result?.changePassword) {
         navigate(`/change-password?token=${data?.result?.token}`);
@@ -34,6 +34,7 @@ const Login = () => {
         const adminName = data?.result?.loginname;
         const adminRole = data?.result?.role;
         const adminSite = data?.result?.site;
+        localStorage.setItem("token", adminToken);
         dispatch(
           setUser({ readOnly, adminToken, adminName, adminRole, adminSite })
         );

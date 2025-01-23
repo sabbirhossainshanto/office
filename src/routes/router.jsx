@@ -5,6 +5,8 @@ import Home from "../pages/Home/Home";
 import ChangePassword from "../pages/ChangePassword/ChangePassword";
 import ChangePasswordSuccess from "../pages/ChangePasswordSuccess/ChangePasswordSuccess";
 import ChangePasswordAfterLogin from "../pages/ChangePassword/ChangePasswordAfterLogin";
+import Cricket from "../pages/Markets/Cricket/Cricket";
+import AllMarkets from "../pages/Markets/AllMarkets/AllMarkets";
 
 export const router = createBrowserRouter(
   [
@@ -19,6 +21,14 @@ export const router = createBrowserRouter(
         {
           path: "/change-password-after-login",
           element: <ChangePasswordAfterLogin />,
+        },
+        {
+          path: "/cricket",
+          element: <Cricket />,
+        },
+        {
+          path: "/all-markets",
+          element: <AllMarkets />,
         },
       ],
     },
