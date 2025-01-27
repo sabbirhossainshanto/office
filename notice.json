@@ -29,7 +29,8 @@
       "runners": "https://admin.api7.live/api/office/runners",
       "tv": "https://admin.api7.live/api/office/tv",
       "result": "https://admin.api7.live/api/office/result",
-      "index": "https://admin.api7.live/api/office/index"
+      "index": "https://admin.api7.live/api/office/index",
+      "viewClient": "https://admin.api7.live/api/office/viewClient"
     }
   },
   "success": true

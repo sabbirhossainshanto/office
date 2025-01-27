@@ -15,6 +15,7 @@ const ListItems = () => {
   const [showTV, setShowTV] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
+  const [showClient, setShowClient] = useState(false);
   const navigate = useNavigate();
 
   const orderRef = useRef();
@@ -42,6 +43,10 @@ const ListItems = () => {
   useCloseModalClickOutside(marketRef, () => {
     setShowMarket(false);
   });
+  const clientRef = useRef();
+  useCloseModalClickOutside(clientRef, () => {
+    setShowClient(false);
+  });
 
   const handleNavigate = (link) => {
     navigate(`/${link}`);
@@ -51,6 +56,7 @@ const ListItems = () => {
     setShowBanner(false);
     setShowMarket(false);
     setShowOrder(false);
+    setShowClient(false);
   };
   return (
     <>
@@ -76,6 +82,7 @@ const ListItems = () => {
               setShowClose(false);
               setShowBanner(false);
               setShowOrder(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -144,6 +151,7 @@ const ListItems = () => {
               setShowBanner(false);
               setShowMarket(false);
               setShowOrder(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -199,7 +207,7 @@ const ListItems = () => {
               setShowTV(false);
               setShowClose(false);
               setShowBanner(false);
-
+              setShowClient(false);
               setShowMarket(false);
             }}
             className="menu-link menu-toggle"
@@ -239,7 +247,7 @@ const ListItems = () => {
             }}
             onMouseEnter={() => {
               setShowClose(true);
-
+              setShowClient(false);
               setShowTV(false);
               setShowEvent(false);
               setShowBanner(false);
@@ -285,7 +293,7 @@ const ListItems = () => {
             onMouseEnter={() => {
               setShowTV(true);
               setShowClose(false);
-
+              setShowClient(false);
               setShowEvent(false);
               setShowBanner(false);
               setShowOrder(false);
@@ -316,7 +324,7 @@ const ListItems = () => {
             onMouseEnter={() => {
               setShowBanner(true);
               setShowTV(false);
-
+              setShowClient(false);
               setShowClose(false);
               setShowEvent(false);
               setShowOrder(false);
@@ -336,6 +344,40 @@ const ListItems = () => {
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="View Banners">Banners</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li ref={clientRef} className={`menu-item ${showClient ? "open" : ""}`}>
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onMouseEnter={() => {
+              setShowClient(true);
+              setShowMarket(false);
+              setShowEvent(false);
+              setShowTV(false);
+              setShowClose(false);
+              setShowBanner(false);
+              setShowOrder(false);
+            }}
+            className="menu-link menu-toggle"
+          >
+            <i className="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Branch">Client</div>
+          </a>
+
+          <ul className="menu-sub">
+            <li className="menu-item ">
+              <a
+                onClick={() => handleNavigate("view-client")}
+                className="menu-link"
+              >
+                <i className="menu-icon tf-icons bx bxs-institution"></i>
+                <div data-i18n="View Branches">View Client</div>
               </a>
             </li>
           </ul>

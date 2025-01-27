@@ -15,6 +15,7 @@ const SidebarItems = () => {
   const [showTV, setShowTV] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
+  const [showClient, setShowClient] = useState(false);
   const { setShowSidebar } = useContextState();
   return (
     <>
@@ -38,6 +39,7 @@ const SidebarItems = () => {
               setShowEvent(false);
               setShowOrder(false);
               setShowTV(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -98,6 +100,7 @@ const SidebarItems = () => {
               setShowEvent((prev) => !prev);
               setShowOrder(false);
               setShowTV(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -150,6 +153,7 @@ const SidebarItems = () => {
               setShowEvent(false);
               setShowOrder((prev) => !prev);
               setShowTV(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -190,6 +194,7 @@ const SidebarItems = () => {
               setShowEvent(false);
               setShowOrder((prev) => !prev);
               setShowTV(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -231,6 +236,7 @@ const SidebarItems = () => {
               setShowEvent(false);
               setShowOrder(false);
               setShowTV((prev) => !prev);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -261,6 +267,7 @@ const SidebarItems = () => {
               setShowEvent(false);
               setShowOrder(false);
               setShowTV(false);
+              setShowClient(false);
             }}
             className="menu-link menu-toggle"
           >
@@ -277,6 +284,68 @@ const SidebarItems = () => {
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="View Banners">Banner</div>
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li className={`menu-item ${showBanner ? "open" : ""}`}>
+          <a
+            style={{}}
+            onClick={() => {
+              setShowMarket(false);
+              setShowBanner((prev) => !prev);
+              setShowClose(false);
+              setShowEvent(false);
+              setShowOrder(false);
+              setShowTV(false);
+              setShowClient(false);
+            }}
+            className="menu-link menu-toggle"
+          >
+            <i className="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Settings">Banner</div>
+          </a>
+
+          <ul className="menu-sub">
+            <li className="menu-item">
+              <Link
+                to="/view-banner"
+                onClick={() => setShowSidebar(false)}
+                className="menu-link"
+              >
+                <i className="menu-icon tf-icons bx bxs-institution"></i>
+                <div data-i18n="View Banners">Banner</div>
+              </Link>
+            </li>
+          </ul>
+        </li>
+        <li className={`menu-item ${showClient ? "open" : ""}`}>
+          <a
+            style={{}}
+            onClick={() => {
+              setShowMarket(false);
+              setShowBanner(false);
+              setShowClose(false);
+              setShowEvent(false);
+              setShowOrder(false);
+              setShowTV(false);
+              setShowClient((prev) => !prev);
+            }}
+            className="menu-link menu-toggle"
+          >
+            <i className="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Settings">Client</div>
+          </a>
+
+          <ul className="menu-sub">
+            <li className="menu-item">
+              <Link
+                to="/view-client"
+                onClick={() => setShowSidebar(false)}
+                className="menu-link"
+              >
+                <i className="menu-icon tf-icons bx bxs-institution"></i>
+                <div data-i18n="View Banners">View Client</div>
               </Link>
             </li>
           </ul>

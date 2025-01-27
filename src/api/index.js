@@ -8,6 +8,7 @@ export const API = {
   tv: "",
   result: "",
   index: "",
+  viewClient: "",
 };
 
 export const Settings = {

@@ -11,6 +11,7 @@ import MarketOrders from "../pages/Markets/MarketOrders/MarketOrders";
 import TV from "../pages/TV/TV";
 import CricketOrder from "../pages/Order/CricketOrder";
 import AllOrder from "../pages/Order/AllOrder";
+import ViewClient from "../pages/Client/ViewClient/ViewClient";
 
 export const router = createBrowserRouter(
   [
@@ -49,6 +50,10 @@ export const router = createBrowserRouter(
         {
           path: "/cricket-order",
           element: <CricketOrder />,
+        },
+        {
+          path: "/view-client",
+          element: <ViewClient />,
         },
       ],
     },
