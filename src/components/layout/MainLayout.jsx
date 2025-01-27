@@ -13,6 +13,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useVerifyUser } from "../../hooks/auth";
 import useContextState from "../../hooks/useContextState";
 import { useSelector } from "react-redux";
+import Modals from "./Modals";
 
 const MainLayout = () => {
   const { showSidebar } = useContextState();
@@ -88,6 +89,9 @@ const MainLayout = () => {
   }, [userData, navigate, queryClient]);
   return (
     <div className="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+      {/* Modals */}
+      <Modals />
+      {/* Modals */}
       <div className="layout-container">
         <Navbar />
 

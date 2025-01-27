@@ -28,7 +28,8 @@
       "openOrders": "https://admin.api7.live/api/office/openOrders",
       "runners": "https://admin.api7.live/api/office/runners",
       "tv": "https://admin.api7.live/api/office/tv",
-      "result": "https://admin.api7.live/api/office/result"
+      "result": "https://admin.api7.live/api/office/result",
+      "index": "https://admin.api7.live/api/office/index"
     }
   },
   "success": true

@@ -7,6 +7,7 @@ export const API = {
   runners: "",
   tv: "",
   result: "",
+  index: "",
 };
 
 export const Settings = {
