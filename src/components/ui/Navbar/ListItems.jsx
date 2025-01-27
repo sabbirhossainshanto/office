@@ -43,6 +43,7 @@ const ListItems = () => {
     setShowTV(false);
     setShowBanner(false);
     setShowMarket(false);
+    setShowOrder(false);
   };
   return (
     <ul className="menu-inner" style={{ marginLeft: "0px" }}>
@@ -186,7 +187,7 @@ const ListItems = () => {
         <ul className="menu-sub">
           <li className="menu-item">
             <a
-              onClick={() => handleNavigate("view-client")}
+              onClick={() => handleNavigate("cricket-order")}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-user"></i>
@@ -196,7 +197,7 @@ const ListItems = () => {
 
           <li className="menu-item">
             <a
-              onClick={() => handleNavigate("clients-with-balance")}
+              onClick={() => handleNavigate("all-order")}
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-user"></i>

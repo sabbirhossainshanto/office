@@ -9,6 +9,8 @@ import Cricket from "../pages/Markets/Cricket/Cricket";
 import AllMarkets from "../pages/Markets/AllMarkets/AllMarkets";
 import MarketOrders from "../pages/Markets/MarketOrders/MarketOrders";
 import TV from "../pages/TV/TV";
+import CricketOrder from "../pages/Order/CricketOrder";
+import AllOrder from "../pages/Order/AllOrder";
 
 export const router = createBrowserRouter(
   [
@@ -39,6 +41,14 @@ export const router = createBrowserRouter(
         {
           path: "/tv",
           element: <TV />,
+        },
+        {
+          path: "/all-order",
+          element: <AllOrder />,
+        },
+        {
+          path: "/cricket-order",
+          element: <CricketOrder />,
         },
       ],
     },

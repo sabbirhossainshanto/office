@@ -10,5 +10,6 @@ export const useGetOpenOrders = (payload) => {
       return data;
     },
     gcTime: 0,
+    refetchInterval: 7000,
   });
 };
