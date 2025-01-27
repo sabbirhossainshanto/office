@@ -71,7 +71,7 @@ const MatchResult = ({
           <div className="modal-content" ref={matchResultRef}>
             <div className="modal-header">
               <h5 className="modal-title" id="modalCenterTitle">
-                Match Result
+                {showDummy ? "Dummy Result" : "Match Result"}
               </h5>
               <button
                 onClick={() => setShowMatchResult(false)}

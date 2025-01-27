@@ -61,7 +61,7 @@ const FancyResult = ({
           <div className="modal-content" ref={updateFancyResultRef}>
             <div className="modal-header">
               <h5 className="modal-title" id="modalCenterTitle">
-                Fancy Result
+                {showDummy ? "Dummy Result" : "Match Result"}
               </h5>
               <button
                 onClick={() => setShowFancyResult(false)}

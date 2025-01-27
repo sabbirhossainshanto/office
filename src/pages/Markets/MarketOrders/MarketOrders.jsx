@@ -1,9 +1,11 @@
 import { MdOutlineContentCopy } from "react-icons/md";
 import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGetOpenOrders } from "../../../hooks/openOrder";
+import { IoChevronBackCircleSharp } from "react-icons/io5";
 
 const MarketOrders = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const marketId = params.get("marketId");
@@ -21,7 +23,20 @@ const MarketOrders = () => {
               justifyContent: "space-between",
             }}
           >
-            <h5>Orders</h5>
+            <button
+              onClick={() => navigate(-1)}
+              style={{
+                border: "none",
+                backgroundColor: "transparent",
+                fontSize: "15px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "5px",
+              }}
+            >
+              <IoChevronBackCircleSharp size={20} /> <span>Back</span>
+            </button>
             {/* <Pagination
             prev
             next

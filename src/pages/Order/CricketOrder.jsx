@@ -41,10 +41,9 @@ const CricketOrder = () => {
                     <th>EventName</th>
                     <th>Market Name</th>
                     <th>Odd</th>
-                    <th>Date</th>
-                    <th>Fancy</th>
                     <th>Place Name</th>
                     <th>Stake</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody className="table-border-bottom-0">
@@ -61,8 +60,6 @@ const CricketOrder = () => {
                         <td>{item?.eventName}</td>
                         <td>{item?.marketName}</td>
                         <td>{item?.odd} </td>
-                        <td>{item?.date} </td>
-                        <td>{item?.fancy} </td>
                         <td
                           style={{
                             backgroundColor:
@@ -73,6 +70,7 @@ const CricketOrder = () => {
                           {item?.placeName}{" "}
                         </td>
                         <td>{item?.stake} </td>
+                        <td>{item?.date} </td>
                       </tr>
                     );
                   })}

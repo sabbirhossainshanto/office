@@ -2,7 +2,7 @@ import { MdOutlineContentCopy } from "react-icons/md";
 import { useGetOpenOrders } from "../../hooks/openOrder";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
-const AllOrder = () => {
+const CricketOrder = () => {
   const { data } = useGetOpenOrders({ eventTypeId: 0 });
 
   return (
@@ -41,10 +41,9 @@ const AllOrder = () => {
                     <th>EventName</th>
                     <th>Market Name</th>
                     <th>Odd</th>
-                    <th>Date</th>
-                    <th>Fancy</th>
                     <th>Place Name</th>
                     <th>Stake</th>
+                    <th>Date</th>
                   </tr>
                 </thead>
                 <tbody className="table-border-bottom-0">
@@ -61,8 +60,6 @@ const AllOrder = () => {
                         <td>{item?.eventName}</td>
                         <td>{item?.marketName}</td>
                         <td>{item?.odd} </td>
-                        <td>{item?.date} </td>
-                        <td>{item?.fancy} </td>
                         <td
                           style={{
                             backgroundColor:
@@ -73,6 +70,7 @@ const AllOrder = () => {
                           {item?.placeName}{" "}
                         </td>
                         <td>{item?.stake} </td>
+                        <td>{item?.date} </td>
                       </tr>
                     );
                   })}
@@ -120,4 +118,4 @@ const AllOrder = () => {
   );
 };
 
-export default AllOrder;
+export default CricketOrder;
