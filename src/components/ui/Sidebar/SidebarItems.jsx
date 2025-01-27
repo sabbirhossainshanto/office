@@ -143,7 +143,7 @@ const SidebarItems = () => {
           <li className="menu-item">
             <Link
               onClick={() => setShowSidebar(false)}
-              to="/view-client"
+              to="/cricket-order"
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -153,7 +153,7 @@ const SidebarItems = () => {
           <li className="menu-item">
             <Link
               onClick={() => setShowSidebar(false)}
-              to="/clients-with-balance"
+              to="/all-order"
               className="menu-link"
             >
               <i className="menu-icon tf-icons bx bxs-institution"></i>
