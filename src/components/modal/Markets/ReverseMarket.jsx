@@ -6,8 +6,21 @@ import handleRandomToken from "../../../utils/handleRandomToken";
 import { useDispatch } from "react-redux";
 import { useIndex } from "../../../hooks";
 import { setShowReverseMarket } from "../../../redux/features/global/globalSlice";
+import { useGetOpenMarket } from "../../../hooks/market";
+import { useLocation } from "react-router-dom";
 
 const ReverseMarket = () => {
+  const location = useLocation();
+  let payload = {};
+  if (location.pathname === "/all-markets") {
+    payload.pagination = true;
+    payload.eventTypeId = 0;
+  }
+  if (location.pathname === "/cricket") {
+    payload.pagination = true;
+    payload.eventTypeId = 4;
+  }
+  const { refetch } = useGetOpenMarket();
   const dispatch = useDispatch();
   const { mutate: reverseMarket } = useIndex();
   const reverseMarketRef = useRef();
@@ -27,6 +40,12 @@ const ReverseMarket = () => {
     reverseMarket(payload, {
       onSuccess: (data) => {
         if (data?.success) {
+          if (
+            location.pathname === "/cricket" ||
+            location.pathname === "/all-markets"
+          ) {
+            refetch();
+          }
           toast.success(data?.result?.message);
           reset();
           closeModal();

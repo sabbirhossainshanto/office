@@ -8,10 +8,10 @@ import MatchResult from "../../../components/modal/Markets/MatchResult";
 import { Link } from "react-router-dom";
 
 const Cricket = () => {
-  // const [activePage, setActivePage] = useState(1);
+  const [activePage, setActivePage] = useState(1);
   const payload = {
     pagination: true,
-    // page: activePage,
+    page: activePage,
     eventTypeId: 4,
   };
   const { data, refetch } = useGetOpenMarket(payload);

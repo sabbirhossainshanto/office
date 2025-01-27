@@ -6,8 +6,21 @@ import handleRandomToken from "../../../utils/handleRandomToken";
 import { useDispatch } from "react-redux";
 import { setShowDeleteMarket } from "../../../redux/features/global/globalSlice";
 import { useIndex } from "../../../hooks";
+import { useGetOpenMarket } from "../../../hooks/market.js";
+import { useLocation } from "react-router-dom";
 
 const DeleteMarket = () => {
+  const location = useLocation();
+  let payload = {};
+  if (location.pathname === "/all-markets") {
+    payload.pagination = true;
+    payload.eventTypeId = 0;
+  }
+  if (location.pathname === "/cricket") {
+    payload.pagination = true;
+    payload.eventTypeId = 4;
+  }
+  const { refetch } = useGetOpenMarket(payload);
   const dispatch = useDispatch();
   const { mutate: deleteMarket } = useIndex();
   const deleteMarketRef = useRef();
@@ -27,6 +40,12 @@ const DeleteMarket = () => {
     deleteMarket(payload, {
       onSuccess: (data) => {
         if (data?.success) {
+          if (
+            location.pathname === "/cricket" ||
+            location.pathname === "/all-markets"
+          ) {
+            refetch();
+          }
           toast.success(data?.result?.message);
           reset();
           closeModal();

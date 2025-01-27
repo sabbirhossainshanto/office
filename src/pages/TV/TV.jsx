@@ -37,13 +37,11 @@ const TV = () => {
               <thead className="table-dark">
                 <tr>
                   <th>Name</th>
-                  <th>Link</th>
                   <th>Channel</th>
                   <th>Is Live</th>
                   <th>League</th>
                   <th>Match ID</th>
                   <th>Now Playing</th>
-                  <th>TimeStart</th>
                   <th>Type</th>
                 </tr>
               </thead>
@@ -52,19 +50,19 @@ const TV = () => {
                   return (
                     <tr key={i}>
                       <td>{item?.Name}</td>
+
                       <td>
-                        {item?.link}{" "}
+                        {item?.Channel}{" "}
                         <MdOutlineContentCopy
                           style={{ cursor: "pointer" }}
                           onClick={() => handleCopyToClipBoard(item?.link)}
                         />
                       </td>
-                      <td>{item?.Channel}</td>
                       <td>{item?.IsLive} </td>
                       <td>{item?.League} </td>
                       <td>{item?.MatchID} </td>
                       <td>{item?.NowPlaying} </td>
-                      <td>{item?.TimeStart} </td>
+
                       <td>{item?.Type} </td>
                     </tr>
                   );
