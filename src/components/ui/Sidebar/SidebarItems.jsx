@@ -112,7 +112,7 @@ const SidebarItems = () => {
             <li className="menu-item">
               <Link
                 onClick={() => setShowSidebar(false)}
-                to="/view-branches"
+                to="/cricket-event"
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -121,7 +121,8 @@ const SidebarItems = () => {
             </li>
 
             <li className="menu-item">
-              <a
+              <Link
+                to="/football-event"
                 onClick={() => {
                   setShowSidebar(false);
                 }}
@@ -129,10 +130,11 @@ const SidebarItems = () => {
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="Add Branch">Football</div>
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
+              <Link
+                to="/tennis-event"
                 onClick={() => {
                   setShowSidebar(false);
                 }}
@@ -140,7 +142,7 @@ const SidebarItems = () => {
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
                 <div data-i18n="Add Branch">Tennis</div>
-              </a>
+              </Link>
             </li>
           </ul>
         </li>

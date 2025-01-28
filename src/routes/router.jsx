@@ -12,6 +12,9 @@ import TV from "../pages/TV/TV";
 import CricketOrder from "../pages/Order/CricketOrder";
 import AllOrder from "../pages/Order/AllOrder";
 import ViewClient from "../pages/Client/ViewClient/ViewClient";
+import CricketEvent from "../pages/events/CricketEvent";
+import FootballEvent from "../pages/events/FootballEvent";
+import TennisEvent from "../pages/events/TennisEvent";
 
 export const router = createBrowserRouter(
   [
@@ -54,6 +57,18 @@ export const router = createBrowserRouter(
         {
           path: "/view-client",
           element: <ViewClient />,
+        },
+        {
+          path: "/cricket-event",
+          element: <CricketEvent />,
+        },
+        {
+          path: "/tennis-event",
+          element: <TennisEvent />,
+        },
+        {
+          path: "/football-event",
+          element: <FootballEvent />,
         },
       ],
     },

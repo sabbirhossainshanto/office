@@ -162,7 +162,7 @@ const ListItems = () => {
           <ul className="menu-sub">
             <li className="menu-item ">
               <a
-                onClick={() => handleNavigate("view-branches")}
+                onClick={() => handleNavigate("cricket-event")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -172,9 +172,7 @@ const ListItems = () => {
 
             <li className="menu-item">
               <a
-                onClick={() => {
-                  setShowEvent(false);
-                }}
+                onClick={() => handleNavigate("football-event")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -183,9 +181,7 @@ const ListItems = () => {
             </li>
             <li className="menu-item">
               <a
-                onClick={() => {
-                  setShowEvent(false);
-                }}
+                onClick={() => handleNavigate("tennis-event")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
