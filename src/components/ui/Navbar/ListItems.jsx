@@ -259,7 +259,7 @@ const ListItems = () => {
           <ul className="menu-sub">
             <li className="menu-item">
               <a
-                onClick={() => handleNavigate("view-banner")}
+                onClick={() => handleNavigate("closed-cricket")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -269,7 +269,7 @@ const ListItems = () => {
 
             <li className="menu-item">
               <a
-                onClick={() => handleNavigate("add-banner")}
+                onClick={() => handleNavigate("closed-all")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -335,11 +335,20 @@ const ListItems = () => {
           <ul className="menu-sub">
             <li className="menu-item">
               <a
-                onClick={() => handleNavigate("client-report")}
+                onClick={() => handleNavigate("view-banners")}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Banners">Banners</div>
+                <div data-i18n="View Banners">View Banners</div>
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                onClick={() => handleNavigate("add-banner")}
+                className="menu-link"
+              >
+                <i className="menu-icon tf-icons bx bxs-institution"></i>
+                <div data-i18n="View Banners">Add Banner</div>
               </a>
             </li>
           </ul>

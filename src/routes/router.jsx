@@ -15,6 +15,11 @@ import ViewClient from "../pages/Client/ViewClient/ViewClient";
 import CricketEvent from "../pages/events/CricketEvent";
 import FootballEvent from "../pages/events/FootballEvent";
 import TennisEvent from "../pages/events/TennisEvent";
+import PNL from "../pages/PNL/PNL";
+import ClosedCricket from "../pages/Closed/ClosedCricket";
+import ClosedAll from "../pages/Closed/ClosedAll";
+import ViewBanner from "../pages/Banner/ViewBanner";
+import AddBanner from "../pages/Banner/AddBanner";
 
 export const router = createBrowserRouter(
   [
@@ -69,6 +74,26 @@ export const router = createBrowserRouter(
         {
           path: "/football-event",
           element: <FootballEvent />,
+        },
+        {
+          path: "/pnl",
+          element: <PNL />,
+        },
+        {
+          path: "/closed-cricket",
+          element: <ClosedCricket />,
+        },
+        {
+          path: "/closed-all",
+          element: <ClosedAll />,
+        },
+        {
+          path: "/view-banners",
+          element: <ViewBanner />,
+        },
+        {
+          path: "/add-banner",
+          element: <AddBanner />,
         },
       ],
     },

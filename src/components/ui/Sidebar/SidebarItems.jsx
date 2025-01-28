@@ -207,7 +207,7 @@ const SidebarItems = () => {
           <ul className="menu-sub">
             <li className="menu-item">
               <Link
-                to="/view-banner"
+                to="/closed-cricket"
                 onClick={() => setShowSidebar(false)}
                 className="menu-link"
               >
@@ -219,7 +219,7 @@ const SidebarItems = () => {
             <li className="menu-item">
               <Link
                 onClick={() => setShowSidebar(false)}
-                to="/add-banner"
+                to="/closed-all"
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
@@ -311,12 +311,22 @@ const SidebarItems = () => {
           <ul className="menu-sub">
             <li className="menu-item">
               <Link
-                to="/view-banner"
+                to="/view-banners"
                 onClick={() => setShowSidebar(false)}
                 className="menu-link"
               >
                 <i className="menu-icon tf-icons bx bxs-institution"></i>
-                <div data-i18n="View Banners">Banner</div>
+                <div data-i18n="View Banners">View Banners</div>
+              </Link>
+            </li>
+            <li className="menu-item">
+              <Link
+                to="/add-banner"
+                onClick={() => setShowSidebar(false)}
+                className="menu-link"
+              >
+                <i className="menu-icon tf-icons bx bxs-institution"></i>
+                <div data-i18n="View Banners">Add Banner</div>
               </Link>
             </li>
           </ul>

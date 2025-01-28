@@ -30,7 +30,9 @@
       "tv": "https://admin.api7.live/api/office/tv",
       "result": "https://admin.api7.live/api/office/result",
       "index": "https://admin.api7.live/api/office/index",
-      "viewClient": "https://admin.api7.live/api/office/viewClient"
+      "viewClient": "https://admin.api7.live/api/office/viewClient",
+      "statement": "https://admin.api7.live/api/office/statement",
+      "up": "https://b2c.bet/deposit/up.php"
     }
   },
   "success": true

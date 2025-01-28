@@ -1,5 +1,3 @@
-import { MdOutlineContentCopy } from "react-icons/md";
-import { handleCopyToClipBoard } from "../../../utils/handleCopyToClipBoard";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetOpenOrders } from "../../../hooks/openOrder";
 import { IoChevronBackCircleSharp } from "react-icons/io5";
@@ -69,12 +67,13 @@ const MarketOrders = () => {
                 {data?.result?.map((item, i) => {
                   return (
                     <tr key={i}>
-                      <td>
-                        {item?.userId}{" "}
-                        <MdOutlineContentCopy
-                          style={{ cursor: "pointer" }}
-                          onClick={() => handleCopyToClipBoard(item?.userId)}
-                        />
+                      <td
+                        style={{ cursor: "pointer" }}
+                        onClick={() =>
+                          navigate(`/view-client?searchId=${item?.userId}`)
+                        }
+                      >
+                        {item?.userId}
                       </td>
                       <td>{item?.eventName}</td>
                       <td>{item?.marketName}</td>

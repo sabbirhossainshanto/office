@@ -1,10 +1,8 @@
 import moment from "moment/moment";
 import { useState } from "react";
-const useDatePicker = (currentDate, from) => {
+const useDatePicker = () => {
   const [dateRange, setDateRange] = useState({
-    startDate: !currentDate
-      ? new Date(new Date().setDate(new Date().getDate() - from || 7))
-      : new Date(),
+    startDate: new Date(new Date().setDate(new Date().getDate() - 30)),
     endDate: new Date(),
   });
 
@@ -19,15 +17,10 @@ const useDatePicker = (currentDate, from) => {
   const fromDate = moment(dateRange?.startDate).format("YYYY-MM-DD");
   const toDate = moment(dateRange?.endDate).format("YYYY-MM-DD");
 
-  // const formattedStartDate = fromDate.split("-").reverse().join("-");
-  // const formattedEndDate = toDate.split("-").reverse().join("-");
-  const formattedStartDate = fromDate;
-  const formattedEndDate = toDate;
-
   return {
     onChange,
-    formattedStartDate,
-    formattedEndDate,
+    fromDate,
+    toDate,
     dateRange,
     setDateRange,
   };

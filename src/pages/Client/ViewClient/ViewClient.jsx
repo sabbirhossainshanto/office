@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { useViewClients } from "../../../hooks/client";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+import ViewDownLine from "../../../components/modal/Client/ViewDownLine";
 
 const ViewClient = () => {
+  const [viewDownLineId, setViewDownLineId] = useState(null);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const searchId = params.get("searchId");
@@ -54,6 +56,12 @@ const ViewClient = () => {
 
   return (
     <>
+      {viewDownLineId && (
+        <ViewDownLine
+          viewDownLineId={viewDownLineId}
+          setViewDownLineId={setViewDownLineId}
+        />
+      )}
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="col-12">
           <div className="card">
@@ -163,6 +171,18 @@ const ViewClient = () => {
                               className="btn btn-icon btn-sm btn-warning"
                             >
                               PL
+                            </a>
+                            &nbsp;
+                            <a
+                              style={{
+                                color: "white",
+                              }}
+                              onClick={() =>
+                                setViewDownLineId(client?.downlineId)
+                              }
+                              className="btn btn-icon btn-sm btn-success"
+                            >
+                              DL
                             </a>
                             &nbsp;
                             <div className="btn-group">

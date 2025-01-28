@@ -65,7 +65,7 @@ const AllMarkets = () => {
               justifyContent: "space-between",
             }}
           >
-            <h5>Cricket</h5>
+            <h5>All</h5>
             {/* <Pagination
             prev
             next
@@ -85,9 +85,11 @@ const AllMarkets = () => {
               <thead className="table-dark">
                 <tr>
                   <th>MarketId</th>
-
+                  <th>Event Id</th>
                   <th>Market Name</th>
-                  <th>Score</th>
+                  <th>In-Play</th>
+                  <th>Status</th>
+                  <th>Winner</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -111,8 +113,15 @@ const AllMarkets = () => {
                         </div>
                       </td>
 
+                      <td>{item?.eventId}</td>
                       <td>{item?.marketName}</td>
-                      <td>{item?.score} </td>
+                      <td
+                        style={{ color: item?.inPlay == 0 ? "red" : "green" }}
+                      >
+                        {item?.inPlay == 0 ? "No" : "Yes"}{" "}
+                      </td>
+                      <td>{item?.status} </td>
+                      <td>{item?.winner} </td>
                       <td style={{ display: "flex", gap: "4px" }}>
                         {item?.isFancy == 1 ? (
                           <a

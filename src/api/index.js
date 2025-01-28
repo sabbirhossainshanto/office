@@ -9,6 +9,8 @@ export const API = {
   result: "",
   index: "",
   viewClient: "",
+  statement: "",
+  up: "",
 };
 
 export const Settings = {
