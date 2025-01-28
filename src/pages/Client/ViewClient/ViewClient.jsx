@@ -1,28 +1,19 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useViewClients } from "../../../hooks/client";
-import ClientDeposit from "../../../components/modal/Client/ClientDeposit";
-import DirectWithdraw from "../../../components/modal/Client/DirectWithdraw";
-import DirectDeposit from "../../../components/modal/Client/DirectDeposit";
-import ChangePassword from "../../../components/modal/Client/ChangePassword";
-import ChangeStatus from "../../../components/modal/Client/ChangeStatus";
-import CreditReference from "../../../components/modal/Client/CreditReference";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 const ViewClient = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const searchId = params.get("searchId");
   const showMoreRef = useRef(null);
   const navigate = useNavigate();
   const { mutate, data: clients, isSuccess } = useViewClients();
   const { handleSubmit, register, watch } = useForm();
   const watchSearchId = watch("searchId");
-  const [directWithdraw, setDirectWithdraw] = useState(false);
-  const [showChangePassword, setShowChangePassword] = useState(false);
-  const [clientDeposit, setClientDeposit] = useState(false);
-  const [directDeposit, setDirectDeposit] = useState(false);
-  const [showChangeStatus, setShowChangeStatus] = useState(false);
-  const [showCreditRef, setShowCreditRef] = useState(false);
-  const [downLineId, setDownLineId] = useState("");
+
   const [showMore, setShowMore] = useState(null);
   useCloseModalClickOutside(showMoreRef, () => {
     setShowMore(null);
@@ -36,16 +27,21 @@ const ViewClient = () => {
     mutate(payload);
   };
 
+  useEffect(() => {
+    if (searchId) {
+      const payload = {
+        searchId,
+        type: "searchClient",
+      };
+      mutate(payload);
+    }
+  }, [searchId, mutate]);
+
   const handleNavigate = (client) => {
     const formatUserId = client?.userId?.split("-")[1];
     navigate(
       `/pnl?id=${formatUserId}&role=${client?.role}&downlineId=${client?.downlineId}`
     );
-  };
-
-  const handleOpenModal = (setModal, username) => {
-    setModal(true);
-    setDownLineId(username);
   };
 
   const handleShowMore = (i) => {
@@ -58,45 +54,6 @@ const ViewClient = () => {
 
   return (
     <>
-      {clientDeposit && (
-        <ClientDeposit
-          downlineId={downLineId}
-          setClientDeposit={setClientDeposit}
-        />
-      )}
-
-      {directWithdraw && (
-        <DirectWithdraw
-          downlineId={downLineId}
-          setDirectWithdraw={setDirectWithdraw}
-        />
-      )}
-
-      {showChangePassword && (
-        <ChangePassword
-          downlineId={downLineId}
-          setShowChangePassword={setShowChangePassword}
-        />
-      )}
-      {showChangeStatus && (
-        <ChangeStatus
-          downlineId={downLineId}
-          setShowChangeStatus={setShowChangeStatus}
-        />
-      )}
-      {showCreditRef && (
-        <CreditReference
-          downlineId={downLineId}
-          setShowCreditRef={setShowCreditRef}
-        />
-      )}
-      {directDeposit && (
-        <DirectDeposit
-          downlineId={downLineId}
-          setDirectDeposit={setDirectDeposit}
-        />
-      )}
-
       <div className="container-xxl flex-grow-1 container-p-y">
         <div className="col-12">
           <div className="card">
@@ -202,112 +159,10 @@ const ViewClient = () => {
                               style={{
                                 color: "white",
                               }}
-                              onClick={() =>
-                                handleOpenModal(
-                                  setClientDeposit,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                )
-                              }
-                              className="btn btn-icon btn-sm btn-success"
-                            >
-                              D
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
-                              onClick={() => {
-                                handleOpenModal(
-                                  setDirectWithdraw,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                );
-                              }}
-                              className="btn btn-icon btn-sm btn-danger"
-                            >
-                              W
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
                               onClick={() => handleNavigate(client)}
                               className="btn btn-icon btn-sm btn-warning"
                             >
                               PL
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
-                              onClick={() => {
-                                handleOpenModal(
-                                  setShowChangePassword,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                );
-                              }}
-                              className="btn btn-icon btn-sm btn-info"
-                            >
-                              P
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
-                              onClick={() => {
-                                handleOpenModal(
-                                  setShowChangeStatus,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                );
-                              }}
-                              className="btn btn-icon btn-sm btn-dark"
-                            >
-                              S
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
-                              onClick={() => {
-                                handleOpenModal(
-                                  setShowCreditRef,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                );
-                              }}
-                              className="btn btn-icon btn-sm btn-primary"
-                            >
-                              CR
-                            </a>
-                            &nbsp;
-                            <a
-                              style={{
-                                color: "white",
-                              }}
-                              onClick={() => {
-                                handleOpenModal(
-                                  setDirectDeposit,
-                                  client?.username,
-                                  client?.role,
-                                  client?.downlineId
-                                );
-                              }}
-                              className="btn btn-icon btn-sm btn-success"
-                            >
-                              DD
                             </a>
                             &nbsp;
                             <div className="btn-group">

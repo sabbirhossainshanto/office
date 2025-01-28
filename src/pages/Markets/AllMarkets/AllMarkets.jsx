@@ -85,7 +85,7 @@ const AllMarkets = () => {
               <thead className="table-dark">
                 <tr>
                   <th>MarketId</th>
-                  <th>EventName</th>
+
                   <th>Market Name</th>
                   <th>Score</th>
                   <th>Actions</th>
@@ -95,14 +95,18 @@ const AllMarkets = () => {
                 {data?.result?.map((item, i) => {
                   return (
                     <tr key={i}>
-                      <td>
-                        {item?.marketId}{" "}
+                      <td style={{ display: "flex", gap: "4px" }}>
+                        <img
+                          src={`/src/assets/icons/${item?.eventTypeId}.svg`}
+                          alt="icon"
+                        />
+                        {item?.marketId}
                         <MdOutlineContentCopy
                           style={{ cursor: "pointer" }}
                           onClick={() => handleCopyToClipBoard(item?.marketId)}
                         />
                       </td>
-                      <td>{item?.eventName}</td>
+
                       <td>{item?.marketName}</td>
                       <td>{item?.score} </td>
                       <td style={{ display: "flex", gap: "4px" }}>

@@ -85,8 +85,9 @@ const Cricket = () => {
               <thead className="table-dark">
                 <tr>
                   <th>MarketId</th>
-                  <th>EventName</th>
+
                   <th>Market Name</th>
+                  <th>Ground Line</th>
                   <th>Score</th>
                   <th>Actions</th>
                 </tr>
@@ -102,8 +103,9 @@ const Cricket = () => {
                           onClick={() => handleCopyToClipBoard(item?.marketId)}
                         />
                       </td>
-                      <td>{item?.eventName}</td>
+
                       <td>{item?.marketName}</td>
+                      <td>{item?.groundLine}</td>
                       <td>{item?.score} </td>
                       <td style={{ display: "flex", gap: "4px" }}>
                         {item?.isFancy == 1 ? (

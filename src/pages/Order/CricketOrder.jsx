@@ -1,8 +1,8 @@
-import { MdOutlineContentCopy } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { useGetOpenOrders } from "../../hooks/openOrder";
-import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
 const CricketOrder = () => {
+  const navigate = useNavigate();
   const { data } = useGetOpenOrders({ eventTypeId: 4 });
 
   return (
@@ -50,12 +50,13 @@ const CricketOrder = () => {
                   {data?.result?.map((item, i) => {
                     return (
                       <tr key={i}>
-                        <td>
+                        <td
+                          style={{ cursor: "pointer" }}
+                          onClick={() =>
+                            navigate(`/view-client?searchId=${item?.userId}`)
+                          }
+                        >
                           {item?.userId}{" "}
-                          <MdOutlineContentCopy
-                            style={{ cursor: "pointer" }}
-                            onClick={() => handleCopyToClipBoard(item?.userId)}
-                          />
                         </td>
                         <td>{item?.eventName}</td>
                         <td>{item?.marketName}</td>
