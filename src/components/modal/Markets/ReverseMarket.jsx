@@ -116,7 +116,7 @@ const ReverseMarket = () => {
                   Close
                 </button>
                 <button type="submit" className="btn btn-primary">
-                  Delete
+                  Reverse
                 </button>
               </div>
             </form>
