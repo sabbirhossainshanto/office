@@ -95,16 +95,20 @@ const AllMarkets = () => {
                 {data?.result?.map((item, i) => {
                   return (
                     <tr key={i}>
-                      <td style={{ display: "flex", gap: "4px" }}>
-                        <img
-                          src={`/src/assets/icons/${item?.eventTypeId}.svg`}
-                          alt="icon"
-                        />
-                        {item?.marketId}
-                        <MdOutlineContentCopy
-                          style={{ cursor: "pointer" }}
-                          onClick={() => handleCopyToClipBoard(item?.marketId)}
-                        />
+                      <td>
+                        <div style={{ display: "flex", gap: "4px" }}>
+                          <img
+                            src={`/src/assets/icons/${item?.eventTypeId}.svg`}
+                            alt="icon"
+                          />
+                          {item?.marketId}
+                          <MdOutlineContentCopy
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              handleCopyToClipBoard(item?.marketId)
+                            }
+                          />
+                        </div>
                       </td>
 
                       <td>{item?.marketName}</td>
